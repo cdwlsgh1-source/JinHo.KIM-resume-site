@@ -36,7 +36,7 @@ const projects = [
     title: "네트워크 인프라 구축 및 개선",
     company: "Emerson",
     logo: "assets/logos/emerson.png",
-    description: "Network Switch Replacement - 한국중부발전 신서천본부",
+    description: "Network Switch Replacement",
     tags: ["LAN Tool", "Network Cable Tester"],
     period: "26년 04월 ~ 26년 05월 (1개월)",
     role: [
