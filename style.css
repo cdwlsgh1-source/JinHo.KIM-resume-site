@@ -1,0 +1,127 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scrollbar-color: #4f46e5 #e2e8f0;
+}
+
+.dark body {
+  scrollbar-color: #4f46e5 #0f172a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 9999px;
+}
+
+/* 스크롤 진입 애니메이션: script.js가 IntersectionObserver로 'visible' 클래스를 토글 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 헤더: 상단에서는 투명, 스크롤 시 배경이 생김 (script.js가 'scrolled' 클래스 토글) */
+#header {
+  background-color: transparent;
+}
+
+#header.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.dark #header.scrolled {
+  background-color: rgba(2, 6, 23, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 활성 네비게이션 링크 */
+.nav-link.active,
+.mobile-link.active {
+  color: #0f172a;
+}
+
+.dark .nav-link.active,
+.dark .mobile-link.active {
+  color: #fff;
+}
+
+.project-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(129, 140, 248, 0.5);
+  box-shadow: 0 20px 40px -20px rgba(79, 70, 229, 0.4);
+}
+
+/* 프로젝트 상세 모달 */
+body.modal-open {
+  overflow: hidden;
+}
+
+#project-modal-panel {
+  animation: modal-pop 0.25s ease;
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 경력 타임라인 */
+.career-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #818cf8;
+}
+
+.career-item::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 16px;
+  bottom: -40px;
+  width: 1px;
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.dark .career-item::after {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.career-item:last-child::after {
+  display: none;
+}

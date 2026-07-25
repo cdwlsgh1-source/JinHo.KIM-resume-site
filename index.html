@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김진호 | Field Service Engineer</title>
+  <meta name="description" content="Field Service Engineer 김진호의 개인 프로필 및 포트폴리오 사이트" />
+
+  <script>
+    var __theme = localStorage.getItem('theme') || 'dark';
+    if (__theme === 'dark') document.documentElement.classList.add('dark');
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+          },
+          fontFamily: {
+            sans: ['"Pretendard"', '"Noto Sans KR"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-white text-slate-700 dark:bg-slate-950 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
+
+  <!-- Header / Navigation -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="#home" class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-400 to-fuchsia-500 flex items-center justify-center text-sm">김</span>
+        <span>김진호</span>
+      </a>
+
+      <ul id="nav-links" class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <li><a href="#about" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="about">소개</a></li>
+        <li><a href="#skills" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="skills">기술 스택</a></li>
+        <li><a href="#projects" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="projects">프로젝트</a></li>
+        <li><a href="#career" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="career">경력</a></li>
+        <li><a href="#certificates" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="certificates">자격증</a></li>
+        <li><a href="#education" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="education">학력</a></li>
+        <li><a href="#contact" class="nav-link hover:text-slate-900 dark:hover:text-white transition-colors" data-section="contact">연락처</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden lg:inline-flex items-center rounded-full bg-brand-500 hover:bg-brand-600 transition-colors px-5 py-2 text-sm font-semibold text-white">
+          연락하기
+        </a>
+
+        <button id="theme-toggle" class="text-slate-600 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-colors" aria-label="테마 전환">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5m0 15V21m9-9h-1.5m-15 0H3m15.36-6.36l-1.06 1.06M6.7 17.3l-1.06 1.06m0-12.72L6.7 6.7m10.6 10.6l1.06 1.06M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z" />
+          </svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <button id="menu-btn" class="lg:hidden text-slate-700 dark:text-slate-200" aria-label="메뉴 열기">
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur border-t border-slate-200 dark:border-white/10">
+      <ul class="flex flex-col px-6 py-4 gap-4 text-slate-700 dark:text-slate-200 font-medium">
+        <li><a href="#about" class="mobile-link block py-1" data-section="about">소개</a></li>
+        <li><a href="#skills" class="mobile-link block py-1" data-section="skills">기술 스택</a></li>
+        <li><a href="#projects" class="mobile-link block py-1" data-section="projects">프로젝트</a></li>
+        <li><a href="#career" class="mobile-link block py-1" data-section="career">경력</a></li>
+        <li><a href="#certificates" class="mobile-link block py-1" data-section="certificates">자격증</a></li>
+        <li><a href="#education" class="mobile-link block py-1" data-section="education">학력</a></li>
+        <li><a href="#contact" class="mobile-link block py-1" data-section="contact">연락처</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / About -->
+    <section id="home" class="relative overflow-hidden pt-40 pb-28 px-6">
+      <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-500/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-40 right-0 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl"></div>
+      </div>
+
+      <div id="about" class="max-w-6xl mx-auto grid md:grid-cols-[1fr_auto] items-center gap-12 scroll-mt-24">
+        <div class="fade-in">
+          <p class="text-brand-400 font-semibold mb-3 tracking-wide">안녕하세요 👋</p>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
+            저는 4년차<br />
+            <span class="bg-gradient-to-r from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">Field Service Engineer</span>
+            <br />입니다.
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-xl mb-8">
+            저는 System Trouble 발생 시 문제 원인을 규명하고 해결하는 과정을 통해 시스템 안정성 100%를 만들어내는 DCS 시스템 엔지니어로,<br />
+            장애 재발률 0%·설치 후 테스트 성공률 100%와 같은 성과를 프로젝트마다 지속적으로 만들어 왔으며, 문제 진단 → 개선안 도출 → 해결의 과정을 통해 시스템의 안정성과 신뢰성을 확보하는 것을 목표로 하고 있습니다.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="inline-flex items-center rounded-full bg-brand-500 hover:bg-brand-600 transition-colors px-6 py-3 font-semibold text-white shadow-lg shadow-brand-500/20">
+              프로젝트 보기
+            </a>
+            <a href="#contact" class="inline-flex items-center rounded-full border border-slate-300 hover:border-slate-400 hover:bg-slate-100 dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-white/5 transition-colors px-6 py-3 font-semibold text-slate-700 dark:text-slate-200">
+              연락하기
+            </a>
+          </div>
+        </div>
+
+        <div class="fade-in justify-self-center">
+          <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full shadow-2xl shadow-brand-500/30 ring-4 ring-slate-200 dark:ring-white/10 overflow-hidden">
+            <img src="assets/profile.jpeg" alt="김진호 프로필 사진" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats" class="max-w-6xl mx-auto px-6 pb-24 scroll-mt-24">
+      <div id="stats-grid" class="fade-in grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- 성과 지표 카드는 script.js의 stats 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in mb-14 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Skills</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">기술 스택</h2>
+      </div>
+
+      <div id="skills-grid" class="fade-in grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- 기술 뱃지는 script.js에서 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in mb-14 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Portfolio</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">프로젝트</h2>
+        <p class="text-slate-500 dark:text-slate-400 mt-3">지금까지 진행한 프로젝트들을 소개합니다.</p>
+      </div>
+
+      <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 프로젝트 카드는 script.js의 projects 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Career -->
+    <section id="career" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in mb-14 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Career</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">경력사항</h2>
+      </div>
+
+      <div id="career-list" class="fade-in max-w-3xl mx-auto flex flex-col gap-10">
+        <!-- 경력 타임라인은 script.js의 careers 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in mb-14 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Certificates</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">자격증 / 교육이수</h2>
+      </div>
+
+      <h3 class="fade-in text-lg font-bold text-slate-900 dark:text-white mb-4">자격증</h3>
+      <div id="certificates-grid" class="fade-in grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
+        <!-- 자격증 카드는 script.js의 certificates 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+
+      <h3 class="fade-in text-lg font-bold text-slate-900 dark:text-white mb-4">교육 이수</h3>
+      <div id="courses-grid" class="fade-in grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 교육 이수 카드는 script.js의 courses 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in mb-14 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Education</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">학력</h2>
+      </div>
+
+      <div id="education-list" class="fade-in max-w-3xl mx-auto flex flex-col gap-4">
+        <!-- 학력 목록은 script.js의 educations 배열을 기반으로 동적으로 렌더링됩니다 -->
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+      <div class="fade-in rounded-3xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-900/60 border border-slate-200 dark:border-white/10 px-8 py-16 text-center">
+        <p class="text-brand-400 font-semibold mb-2">Contact</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">함께 이야기해요</h2>
+        <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-10">
+          새로운 기회나 협업 제안은 언제나 환영합니다. 아래 방법으로 편하게 연락 주세요.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:cdwlsgh1@gmail.com" class="inline-flex items-center gap-2 rounded-full bg-brand-500 hover:bg-brand-600 transition-colors px-6 py-3 font-semibold text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            cdwlsgh1@gmail.com
+          </a>
+          <a href="tel:010-2070-7714" class="inline-flex items-center gap-2 rounded-full border border-slate-300 hover:border-slate-400 hover:bg-slate-100 dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-white/5 transition-colors px-6 py-3 font-semibold text-slate-700 dark:text-slate-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a1 1 0 01.98.804l.72 3.6a1 1 0 01-.53 1.089l-1.6.8a11.04 11.04 0 006 6l.8-1.6a1 1 0 011.09-.53l3.6.72a1 1 0 01.804.98V19a2 2 0 01-2 2h-1C9.163 21 3 14.837 3 7V5z" />
+            </svg>
+            010-2070-7714
+          </a>
+          <a href="https://github.com/cdwlsgh1-source" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-slate-300 hover:border-slate-400 hover:bg-slate-100 dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-white/5 transition-colors px-6 py-3 font-semibold text-slate-700 dark:text-slate-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.21.66.79.55A10.52 10.52 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-white/10 py-8 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <p>&copy; 2026 김진호. All rights reserved.</p>
+      <div class="flex items-center gap-5">
+        <a href="mailto:cdwlsgh1@gmail.com" class="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">Email</a>
+        <a href="https://github.com/cdwlsgh1-source" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">GitHub</a>
+        <a href="#home" class="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">맨 위로</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="hidden fixed inset-0 z-[100] items-center justify-center px-4">
+    <div id="project-modal-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+
+    <div id="project-modal-panel" class="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-8 shadow-2xl">
+      <button id="project-modal-close" class="absolute top-5 right-5 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" aria-label="닫기">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h3 id="modal-title" class="text-2xl font-bold text-slate-900 dark:text-white mb-6"></h3>
+
+      <dl class="flex flex-col gap-5 text-sm">
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">🏢 회사명</dt>
+          <dd class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+            <img id="modal-company-logo" class="w-6 h-6 object-contain" alt="" />
+            <span id="modal-company"></span>
+          </dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">📌 프로젝트</dt>
+          <dd id="modal-description" class="text-slate-600 dark:text-slate-300 leading-relaxed"></dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">📅 기간</dt>
+          <dd id="modal-period" class="text-slate-600 dark:text-slate-300"></dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">🏆 성과</dt>
+          <dd id="modal-achievement" class="text-slate-600 dark:text-slate-300 leading-relaxed"></dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">👤 역할</dt>
+          <dd>
+            <ul id="modal-role" class="flex flex-col gap-1.5 text-slate-600 dark:text-slate-300 leading-relaxed"></ul>
+          </dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 text-brand-400 font-semibold mb-1">🛠 기술</dt>
+          <dd id="modal-tags" class="flex flex-wrap gap-2"></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
