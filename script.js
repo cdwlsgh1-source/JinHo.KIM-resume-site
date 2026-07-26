@@ -1,4 +1,20 @@
 // ------------------------------------------------------------
+// 성과 지표: 실제 데이터(projects/skills/certificates)와 경력 시작일을 기준으로
+// 자동 계산되어 #stats-grid에 렌더링됩니다. 항목을 추가/수정하면 숫자도 함께 갱신됩니다.
+// ------------------------------------------------------------
+const careerStartDate = new Date(2022, 1, 1); // 한국하니웰(주) 입사일(2022.02) 기준
+
+function getStats() {
+  const careerYears = Math.floor((Date.now() - careerStartDate) / (1000 * 60 * 60 * 24 * 365.25));
+  return [
+    { value: `${careerYears}년+`, label: "실무 경력" },
+    { value: `${projects.length}`, label: "완료 프로젝트" },
+    { value: `${skills.length}`, label: "보유 기술 스택" },
+    { value: `${certificates.length}`, label: "보유 자격증" },
+  ];
+}
+
+// ------------------------------------------------------------
 // 기술 스택 데이터: 이 배열에 항목을 추가/수정하면 #skills-grid에 자동 반영됩니다.
 // ------------------------------------------------------------
 const skills = [
@@ -16,13 +32,16 @@ const skills = [
 // ------------------------------------------------------------
 // 프로젝트 데이터: 이 배열에 객체를 추가하면 #projects-grid 카드가 자동으로 늘어납니다.
 // 카드를 클릭하면 아래 필드가 모두 모달 팝업으로 표시됩니다.
+// cardTitle/cardText는 카드 미리보기 전용 문구이며, title/description은 상세 모달 전용 문구입니다.
 // ------------------------------------------------------------
 const projects = [
   {
-    title: "시스템 구축 및 검증",
+    title: "Demo 시스템 구축 및 검증",
+    cardTitle: "Demo 시스템 구축 및 검증",
     company: "Emerson",
     logo: "assets/logos/emerson.png",
     description: "Ovation Demo kit setup for User group conference",
+    cardText: "Demo 장비 고객 시연(Test) 성공률 100%",
     tags: ["VM Ware", "Cisco Switch", "Putty"],
     period: "26년 05월 ~ 26년 06월 (2개월)",
     role: [
@@ -34,9 +53,11 @@ const projects = [
   },
   {
     title: "네트워크 인프라 구축 및 개선",
+    cardTitle: "네트워크 인프라 구축 및 개선",
     company: "Emerson",
     logo: "assets/logos/emerson.png",
     description: "Network Switch Replacement",
+    cardText: "네트워크 통신 정상화 100%",
     tags: ["LAN Tool", "Network Cable Tester"],
     period: "26년 04월 ~ 26년 05월 (1개월)",
     role: [
@@ -48,9 +69,11 @@ const projects = [
   },
   {
     title: "Cyber Security",
+    cardTitle: "Cyber Security",
     company: "Honeywell",
     logo: "assets/logos/honeywell.png",
     description: "DCS Cyber Security Update (MS Patch 및 Anti-virus 설치)",
+    cardText: "MS Patch 문제 정상화 100%",
     tags: ["LAN Tool", "Network Cable Tester"],
     period: "25년 03월 ~ 25년 11월 (11개월)",
     role: [
@@ -62,10 +85,12 @@ const projects = [
     achievement: "Window MS Patch 실패 문제 원인규명을 통해 시스템 정상화 100% 달성.",
   },
   {
-    title: "시스템 유지보수",
+    title: "DCS 시스템 유지보수",
+    cardTitle: "DCS 시스템 유지보수",
     company: "Honeywell",
     logo: "assets/logos/honeywell.png",
     description: "정기 유지보수",
+    cardText: "발생 알람 클리어 100%",
     tags: ["LAN Tool", "Network Cable Tester"],
     period: "25년 01월 ~ 25년 03월 (3개월)",
     role: [
@@ -77,10 +102,12 @@ const projects = [
     achievement: "정기점검 중 발생된 시스템 알람 100% 해소를 통해 시스템 안정성 확보.",
   },
   {
-    title: "시스템 Overhaul",
+    title: "DCS 시스템 Overhaul",
+    cardTitle: "DCS 시스템 Overhaul",
     company: "Honeywell",
     logo: "assets/logos/honeywell.png",
     description: "한화솔루션케미칼 TA DCS Overhaul 작업",
+    cardText: "장애 재발율 0% 조치",
     tags: ["Acronis", "ChatGPT"],
     period: "24년 12월 ~ 25년 02월 (3개월)",
     role: [
@@ -92,10 +119,12 @@ const projects = [
     achievement: "Overhaul 작업중 발생한 시스템 장애 100% 클리어.",
   },
   {
-    title: "시스템 설치",
+    title: "DCS 시스템 설치",
+    cardTitle: "DCS 시스템 설치",
     company: "Honeywell",
     logo: "assets/logos/honeywell.png",
     description: "Huchems 5NA 공장 DCS System Upgrade",
+    cardText: "FAT/SAT 테스트 성공률 100%",
     tags: ["VM Ware", "Putty", "Cisco"],
     period: "24년 04월 ~ 24년 07월 (4개월)",
     role: [
@@ -109,9 +138,11 @@ const projects = [
   },
   {
     title: "자동제어 로직설계",
+    cardTitle: "자동제어 로직설계",
     company: "Honeywell",
     logo: "assets/logos/honeywell.png",
     description: "LG화학 VCM 폐가스소각로 Logic DCS 수용작업",
+    cardText: "공정 로직 오류 발생 0건",
     tags: ["VM Ware"],
     period: "22년 11월 ~ 23년 03월 (5개월)",
     role: [
@@ -123,22 +154,6 @@ const projects = [
     achievement: "제어로직에 대한 시뮬레이션 테스트를 통해 잠재적 오류를 사전에 식별하고 개선하여, 로직 무결성 100% 달성.",
   },
 ];
-
-// ------------------------------------------------------------
-// 성과 지표: 실제 데이터(projects/skills/certificates)와 경력 시작일을 기준으로
-// 자동 계산되어 #stats-grid에 렌더링됩니다. 항목을 추가/수정하면 숫자도 함께 갱신됩니다.
-// ------------------------------------------------------------
-const careerStartDate = new Date(2022, 1, 1); // 한국하니웰(주) 입사일(2022.02) 기준
-
-function getStats() {
-  const careerYears = Math.floor((Date.now() - careerStartDate) / (1000 * 60 * 60 * 24 * 365.25));
-  return [
-    { value: `${careerYears}년+`, label: "실무 경력" },
-    { value: `${projects.length}`, label: "완료 프로젝트" },
-    { value: `${skills.length}`, label: "보유 기술 스택" },
-    { value: `${certificates.length}`, label: "보유 자격증" },
-  ];
-}
 
 // ------------------------------------------------------------
 // 경력사항 데이터: #career-list에 타임라인으로 렌더링됩니다.
@@ -182,6 +197,7 @@ const certificates = [
 // 교육 이수 데이터: #courses-grid에 렌더링됩니다.
 // ------------------------------------------------------------
 const courses = [
+  { name: "클로드 코드 완벽 마스터:<br>AI 개발 워크플로우 기초부터 실전까지", institute: "인프런", period: "2026.06 - Present", logo: "assets/logos/claude.png" },
   { name: "혼자 공부하는 클로드 코딩", institute: "한빛미디어", period: "2026.06", logo: "assets/logos/claude.png" },
   { name: "AZ-900 기초과정", institute: "인프런", period: "2026.06", logo: "assets/logos/microsoft.png" },
   { name: "Cisco CCNA 200-301 완전정복", institute: "Udemy", period: "2025.06 - 2025.09", logo: "assets/logos/cisco.png" },
@@ -197,8 +213,22 @@ const educations = [
 ];
 
 // ------------------------------------------------------------
-// 렌더링
+// 렌더링 (실제 화면에 보이는 섹션 순서: 통계 → 기술스택 → 프로젝트 → 경력 → 자격증/교육이수 → 학력)
 // ------------------------------------------------------------
+function renderStats() {
+  const grid = document.getElementById("stats-grid");
+  grid.innerHTML = getStats()
+    .map(
+      (stat) => `
+      <div class="rounded-2xl bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 px-4 py-6 text-center">
+        <p class="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">${stat.value}</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">${stat.label}</p>
+      </div>
+    `
+    )
+    .join("");
+}
+
 function renderSkills() {
   const grid = document.getElementById("skills-grid");
   grid.innerHTML = skills
@@ -220,8 +250,8 @@ function renderProjects() {
       (project, index) => `
       <div class="project-card fade-in flex flex-col rounded-2xl bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 p-6 cursor-pointer" data-index="${index}" tabindex="0" role="button" aria-haspopup="dialog">
         <img src="${project.logo}" alt="${project.company} 로고" class="w-10 h-10 object-contain mb-4" />
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">${project.title}</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${project.description}</p>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">${project.cardTitle}</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${project.cardText}</p>
         <div class="mt-auto flex flex-wrap gap-2">
           ${project.tags
             .map(
@@ -236,20 +266,6 @@ function renderProjects() {
     .join("");
 
   observeFadeIns();
-}
-
-function renderStats() {
-  const grid = document.getElementById("stats-grid");
-  grid.innerHTML = getStats()
-    .map(
-      (stat) => `
-      <div class="rounded-2xl bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 px-4 py-6 text-center">
-        <p class="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">${stat.value}</p>
-        <p class="text-sm text-slate-500 dark:text-slate-400">${stat.label}</p>
-      </div>
-    `
-    )
-    .join("");
 }
 
 function renderCareers() {
@@ -488,11 +504,11 @@ function observeFadeIns() {
 }
 
 // ------------------------------------------------------------
-// 초기화
+// 초기화 (화면 순서: 통계 → 기술스택 → 프로젝트 → 경력 → 자격증 → 교육이수 → 학력)
 // ------------------------------------------------------------
+renderStats();
 renderSkills();
 renderProjects();
-renderStats();
 renderCareers();
 renderCertificates();
 renderCourses();
